@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ROTOCHAY — Web Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#efeee9; --panel:#f8f7f3; --ink:#111; --mute:#6f6e68; --line:#d6d5ce; --dot:#cdccc5; --orange:#ff4f1f;
+  --serif:"EB Garamond","Apple Garamond",Garamond,Georgia,serif;
+  --sans:"Space Grotesk",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.45;
+  background-image:radial-gradient(var(--dot) 1px,transparent 1.3px);background-size:22px 22px}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase}
+.mute{color:var(--mute)}
+.ruler{height:12px;background:repeating-linear-gradient(90deg,var(--ink) 0 1.5px,transparent 0 10px);
+  -webkit-mask:linear-gradient(#000 0 50%,transparent 0);mask:linear-gradient(#000 0 50%,transparent 0)}
+.led{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--orange);margin-right:8px;box-shadow:0 0 8px var(--orange);animation:b 1.5s steps(2) infinite}
+@keyframes b{50%{opacity:.25}}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(239,238,233,.93);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--ink)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:58px}
+nav .l{display:flex;gap:24px;align-items:center}
+nav a:hover{color:var(--orange)}
+.pill{background:var(--ink);color:var(--bg);border-radius:99px;padding:8px 16px}
+.pill:hover{background:var(--orange);color:#fff!important}
+@media(max-width:620px){.hide{display:none}}
+
+.hero{padding:36px 0 56px}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(58px,17vw,224px);line-height:.86;letter-spacing:-.035em;margin:22px 0 34px}
+.hero h1 i{font-style:italic;font-weight:400;color:var(--orange)}
+.deck{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+@media(max-width:820px){.deck{grid-template-columns:1fr}}
+.box{background:var(--panel);border:1px solid var(--ink);border-radius:20px;padding:28px;position:relative}
+.box .tag{position:absolute;top:14px;right:18px}
+.box p{font-family:var(--serif);font-size:clamp(24px,3vw,34px);line-height:1.18;letter-spacing:-.01em;margin-top:14px}
+.box p em{color:var(--orange)}
+.kv{display:grid;gap:13px;margin-top:6px}
+.kv div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:12px}
+.kv div:last-child{border:0;padding:0}
+.kv span:last-child{text-align:right}
+
+.ticker{background:var(--orange);color:var(--ink);overflow:hidden;white-space:nowrap;border-block:1px solid var(--ink)}
+.ticker div{display:inline-block;padding:12px 0;font-family:var(--serif);font-style:italic;font-size:24px;animation:t 40s linear infinite}
+@keyframes t{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ticker div,.led{animation:none}}
+
+section{padding:84px 0;border-bottom:1px solid var(--ink)}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:38px}
+h2{font-family:var(--serif);font-weight:500;font-size:clamp(46px,8vw,96px);line-height:.92;letter-spacing:-.03em}
+h2 i{font-weight:400;color:var(--orange)}
+
+.work{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px}
+.proj{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--ink);border-radius:24px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.proj:hover{transform:translateY(-5px);box-shadow:0 20px 44px -22px rgba(0,0,0,.35)}
+.top{display:flex;justify-content:space-between;padding:14px 18px}
+.win{margin:0 14px;background:#fff;border:1px solid var(--ink);border-radius:12px;overflow:hidden}
+.bar{display:flex;gap:5px;align-items:center;padding:7px 10px;border-bottom:1px solid var(--ink);background:var(--bg)}
+.bar b{width:8px;height:8px;border-radius:50%;border:1px solid var(--ink)}
+.bar b:first-child{background:var(--orange);border-color:var(--orange)}
+.bar span{margin-left:8px;font-family:var(--mono);font-size:9px;color:var(--mute);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.view{position:relative;aspect-ratio:4/3;overflow:hidden;background:#fff}
+.view iframe{position:absolute;top:0;left:0;width:1280px;height:960px;border:0;transform-origin:0 0;pointer-events:none;background:#fff}
+.view .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--mute)}
+.meta{padding:20px 22px 22px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.meta h3{font-family:var(--serif);font-size:clamp(32px,3.4vw,42px);font-weight:500;letter-spacing:-.025em;line-height:1;margin-top:6px}
+.arrow{width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:18px;flex:none;transition:transform .25s,background .25s}
+.proj:hover .arrow{transform:rotate(45deg);background:var(--orange)}
+
+.mods{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.mod{background:var(--panel);border:1px solid var(--ink);border-radius:20px;padding:26px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;transition:background .2s,color .2s}
+.mod .d{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--ink);transition:background .2s,border-color .2s}
+.mod:hover{background:var(--ink);color:var(--bg)}
+.mod:hover .d{background:var(--orange);border-color:var(--orange)}
+.mod h3{font-family:var(--serif);font-size:34px;font-weight:500;letter-spacing:-.02em;line-height:1;margin:16px 0 10px}
+.mod p{color:var(--mute);font-size:16px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));border:1px solid var(--ink);border-radius:20px;overflow:hidden;background:var(--panel)}
+.steps div{padding:28px;border-right:1px solid var(--ink)}
+.steps div:last-child{border:0}
+@media(max-width:700px){.steps div{border-right:0;border-bottom:1px solid var(--ink)}}
+.steps b{font-family:var(--serif);font-size:60px;font-weight:500;line-height:1;display:block;margin-bottom:10px;color:var(--orange)}
+.steps h3{font-family:var(--serif);font-size:30px;font-weight:500;margin-bottom:6px}
+.stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.stack span{border:1px solid var(--ink);border-radius:99px;padding:9px 16px;background:var(--panel)}
+
+.contact{background:var(--ink);color:var(--bg);border-bottom:0;padding:84px 0 30px}
+.contact .mute{color:#908f89}
+.big{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(54px,12vw,160px);line-height:.88;letter-spacing:-.035em;margin:20px 0 26px}
+.big i{font-weight:400;color:var(--orange)}
+.mail{display:inline-block;font-family:var(--serif);font-size:clamp(28px,6.4vw,84px);letter-spacing:-.02em;border-bottom:2px solid var(--orange);line-height:1.1;word-break:break-all}
+.mail:hover{color:var(--orange)}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid #333;padding-top:18px;margin-top:60px}
+</style>
+</head>
+<body>
+<div class="ruler"></div>
+<nav><div class="wrap">
+  <a href="#top" class="mono"><span class="led"></span>ROTOCHAY</a>
+  <div class="l mono"><a class="hide" href="#work">Work</a><a class="hide" href="#services">Services</a><a class="hide" href="#process">Process</a><a class="pill" href="mailto:rotochay@gmail.com">Email me</a></div>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div class="mono mute" style="display:flex;justify-content:space-between"><span>Portfolio / Vol. 01</span><span id="clock">--:--:--</span></div>
+  <h1>ROTO<i>chay</i></h1>
+  <div class="deck">
+    <div class="box"><span class="tag mono mute">RC-00</span>
+      <p>Web developer making sharp, fast, <em>honest</em> websites for real local businesses. Less clutter, more character.</p>
+    </div>
+    <div class="box"><span class="tag mono mute">SPEC</span><div class="kv mono">
+      <div><span class="mute">Status</span><span>● Available</span></div>
+      <div><span class="mute">Focus</span><span>Business websites</span></div>
+      <div><span class="mute">Built with</span><span>HTML / CSS / JS</span></div>
+      <div><span class="mute">Email</span><span style="text-transform:none">rotochay@gmail.com</span></div>
+    </div></div>
+  </div>
+</div></header>
+<div class="ticker"><div id="tk"></div></div>
+
+<section id="work"><div class="wrap">
+  <div class="sh"><h2>Selected<br><i>work</i></h2><span class="mono mute">(03) Live sites</span></div>
+  <div class="work">
+    <a class="proj" href="https://rotochay.github.io/Mei-House/" target="_blank" rel="noopener">
+      <div class="top mono"><span>RC-01</span><span class="mute">Restaurant</span></div>
+      <div class="win"><div class="bar"><b></b><b></b><b></b><span>rotochay.github.io/Mei-House</span></div><div class="view"><div class="ph mono">Loading preview…</div><iframe data-src="https://rotochay.github.io/Mei-House/" title="Mei House preview" loading="lazy" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe></div></div>
+      <div class="meta"><div><span class="mono mute">Open live site</span><h3>Mei House</h3></div><span class="arrow">↗</span></div>
+    </a>
+    <a class="proj" href="https://rotochay.github.io/Cafe1Bistro/" target="_blank" rel="noopener">
+      <div class="top mono"><span>RC-02</span><span class="mute">Café &amp; Bistro</span></div>
+      <div class="win"><div class="bar"><b></b><b></b><b></b><span>rotochay.github.io/Cafe1Bistro</span></div><div class="view"><div class="ph mono">Loading preview…</div><iframe data-src="https://rotochay.github.io/Cafe1Bistro/" title="Cafe 1 Bistro preview" loading="lazy" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe></div></div>
+      <div class="meta"><div><span class="mono mute">Open live site</span><h3>Cafe 1 Bistro</h3></div><span class="arrow">↗</span></div>
+    </a>
+    <a class="proj" href="https://rotochay.github.io/Bonjour-Cafe/" target="_blank" rel="noopener">
+      <div class="top mono"><span>RC-03</span><span class="mute">Café</span></div>
+      <div class="win"><div class="bar"><b></b><b></b><b></b><span>rotochay.github.io/Bonjour-Cafe</span></div><div class="view"><div class="ph mono">Loading preview…</div><iframe data-src="https://rotochay.github.io/Bonjour-Cafe/" title="Bonjour Café preview" loading="lazy" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe></div></div>
+      <div class="meta"><div><span class="mono mute">Open live site</span><h3>Bonjour Café</h3></div><span class="arrow">↗</span></div>
+    </a>
+  </div>
+</div></section>
+
+<section id="services"><div class="wrap">
+  <div class="sh"><h2>What I<br><i>make</i></h2><span class="mono mute">(04) Services</span></div>
+  <div class="mods">
+    <div class="mod"><span class="d"></span><div><h3>Business websites</h3><p>Clear, good-looking sites for cafés, restaurants and local shops.</p></div></div>
+    <div class="mod"><span class="d"></span><div><h3>Responsive design</h3><p>Looks right on phones, tablets and big screens. Always.</p></div></div>
+    <div class="mod"><span class="d"></span><div><h3>Fast and light</h3><p>Hand-written code with no bloat, so pages open instantly.</p></div></div>
+    <div class="mod"><span class="d"></span><div><h3>Prototypes</h3><p>See your site live before you commit to anything.</p></div></div>
+  </div>
+</div></section>
+
+<section id="process"><div class="wrap">
+  <div class="sh"><h2>How it<br><i>works</i></h2><span class="mono mute">(05) Process</span></div>
+  <div class="steps">
+    <div><b>01</b><h3>Talk</h3><p class="mute">You tell me about the business, the vibe and what you need.</p></div>
+    <div><b>02</b><h3>Build</h3><p class="mute">I design and code a live prototype you can open on your phone.</p></div>
+    <div><b>03</b><h3>Launch</h3><p class="mute">We tweak it, then it goes live. Simple.</p></div>
+  </div>
+  <div class="stack mono"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span><span>UI Design</span><span>Responsive</span></div>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap">
+  <span class="mono mute">(06) Contact</span>
+  <span class="big">Let’s build<br><i>something.</i></span>
+  <a class="mail" href="mailto:rotochay@gmail.com">rotochay@gmail.com</a>
+  <div class="foot mono mute"><span>© <span id="yr">2026</span> ROTOCHAY</span><a href="https://github.com/rotochay" target="_blank" rel="noopener">GitHub ↗</a></div>
+</div></section>
+<div class="ruler" style="transform:scaleY(-1)"></div>
+
+<script>
+(function(){
+  var c=document.getElementById('clock');
+  function t(){c.textContent=new Date().toLocaleTimeString('en-GB')}
+  t();setInterval(t,1000);
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  var s='Web developer  ✦  Clean code  ✦  Fast sites  ✦  Responsive  ✦  Hand-built  ✦  Rotochay  ✦  ';
+  document.getElementById('tk').textContent=s+s+s+s;
+  var views=document.querySelectorAll('.view');
+  function fit(){views.forEach(function(v){var f=v.querySelector('iframe');f.style.transform='scale('+(v.clientWidth/1280)+')'})}
+  fit();addEventListener('resize',fit);
+  views.forEach(function(v){var f=v.querySelector('iframe');f.src=f.dataset.src;
+    f.addEventListener('load',function(){var p=v.querySelector('.ph');if(p)p.remove()})});
+})();
+</script>
+</body>
+</html>
